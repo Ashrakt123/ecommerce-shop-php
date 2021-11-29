@@ -1,4 +1,24 @@
 <?php
+
+function getcat(){
+    global $con ;
+    $cat1 = $con ->prepare("SELECT * FROM categories ORDER BY ID ASC ");
+    $cat1 ->execute();
+    $rows = $cat1->fetchAll();
+    return $rows ;
+
+}
+
+function getitem($catid){
+    global $con ;
+    $item = $con ->prepare("SELECT * FROM items WHERE CatID =? ORDER BY ItemID ASC ");
+    $item ->execute(array($catid));
+    $rows = $item->fetchAll();
+    return $rows ;
+
+}
+
+
 function getTitle() {
 
     global $pageTitle;

@@ -21,6 +21,7 @@ if($action == 'manage'){
 	$stm ->execute();
 	//asighn to variable
 	$rows = $stm->fetchAll();
+	if(!empty($rows)){
 ?>
                     <!--manage page -->
             <h1 class="text-center">Manage Page </h1>
@@ -45,18 +46,20 @@ if($action == 'manage'){
 						  echo '<td>'.$row["Fullname"] .'</td>';
 						  echo '<td>'.$row["Date"] .'</td>';
 						  echo '<td>'.$row["Fullname"] .'</td>';
-
-
-						  echo "<td>
+                          echo "<td>
 						  <a href='members.php?action=edit&userid=" . $row['UserID'] . "' class='btn btn-success'><i class='fa fa-edit'></i> Edit</a>
 						  <a href='members.php?action=delete&userid=" . $row['UserID'] . "' class='btn btn-danger confirm'><i class='fa fa-close'></i> Delete </a>";
 						  if($row['RegStatus'] == 0){
 							echo "<a href='members.php?action=activate&userid=" . $row['UserID'] . "' class='btn btn-info activate'><i class='fa fa-close'></i> Activate </a>";
-
-						  }
+                                                    }
 						  echo "</td>";
-								echo "</tr>";
-					   }
+						  echo "</tr>";
+					                          }
+					}else{
+						echo "<div class='container'>";
+						    echo '<div class="alert alert-info"> there\'s no record to show</div>' ;
+						echo "</div>";
+						   }
 					   ?>
 					 
 					  
@@ -240,7 +243,7 @@ elseif($action == 'add'){
 			    <label class="col-sm-2 control-label">Password</label>
 				  <div class="col-sm-10">
 				  <input type="hidden" name="oldpassword" value="<?php echo $row['Pass']?>"/>
-                  <input type="password" name="newpassword" class="form-control" required ='required' autocomplete="new-password" placeholder="Password Must Be Hard & Complex"/>
+                  <input type="password" name="newpassword" class="form-control"  autocomplete="new-password" placeholder="Password Must Be Hard & Complex"/>
 				  </div>
 				</div>
                  <!--password-->
@@ -321,13 +324,20 @@ elseif($action == 'add'){
 
 		//check if there is no errors proceed the update operation 
 		if(empty($formerrors)){
-           
+            $stm2 =$con->prepare("SELECT * FROM users WHERE Username = ? AND UserID != ?");
+			$stm2 ->execute(array($username ,$id));
+			$comment =$stm2 ->rowCount();
+             if($comment == 1){
+				 $theMsg = '<div class="alert alert-danger">Sorry This User Is Exist</div>';
+                 redirectHome($theMsg, 'back');
+			 }else{
 			$stmt = $con->prepare("UPDATE users SET Username= ? ,Email =? ,Fullname =? ,Pass =? WHERE UserID =?");
             $stmt ->execute(array($username ,$email ,$fullname,$pass ,$id));
             $msg= '<div class="alert alert-success">' .$stmt->rowcount().'row updated</div>' ;
 			redirectHome($msg,'back' ,4);
 
-		                     }
+           }               
+		  }
 	     }else{
 		echo "<div class='container'>";
 		$msg = '<div class="alert alert-danger">sorry you cannt browse this page directly</div>' ;

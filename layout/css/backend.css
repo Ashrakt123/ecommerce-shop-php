@@ -1,0 +1,78 @@
+body{
+    background-color: snow;
+    font-size:16px;
+}
+
+/*form */
+.login{
+    width:500px;
+    margin: 100px auto;
+
+}
+
+.dropdown-item {
+    background-color:#e9ecef
+}
+.navbar-brand {
+     font-size:1rem;
+}
+.container{
+height:30px;
+}
+/*start categories*/
+ h1{
+     margin-bottom: 20px;
+ }
+.item-box{
+    position:relative;
+}
+.item-box .price-tag{
+        background-color: #6DBF56;
+        padding: 5px;
+        position: absolute;
+        margin-top: 5px;
+        font-weight: bold;
+        float: 0;
+}
+/*start login page*/
+.login-page form{
+    max-width: 400px;
+    margin: auto;
+    padding: 10px;
+}
+.login-page form input{
+    margin-bottom: 10px;
+}
+.login-page [data-class="login"].selected{
+    color: #007bff;
+    font-weight: bold;
+}
+.login-page [data-class="signup"].selected{
+    color: #28a745;
+    font-weight: bold;
+}
+.login-page h1{
+    margin-bottom:20px ;
+    margin-top: 20px;
+    color:rgb(166, 174, 174);
+    font-weight: bold;
+}
+.login-page .signup{
+    display: none;
+}
+
+.login-page h1 span{
+    cursor: pointer;
+}
+.star{
+    position: relative;
+}
+.asterisk{
+    font-size:25px;
+    font-weight: bold;
+    position: absolute;
+    right:16px;
+    color:#B22020;
+    top:1px;
+    
+    }

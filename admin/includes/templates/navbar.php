@@ -9,11 +9,11 @@
 
         <div class="collapse navbar-collapse" id="AppNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="#"><?php echo lang('two')?></a></li>
-                <li class="nav-item active"><a class="nav-link" href="#"><?php echo lang('three')?></a></li>
+                <li class="nav-item active"><a class="nav-link" href="categories.php?action=manage"><?php echo lang('two')?></a></li>
+                <li class="nav-item active"><a class="nav-link" href="items.php"><?php echo lang('three')?></a></li>
                 <li class="nav-item active"><a class="nav-link" href="members.php"><?php echo lang('four')?></a></li>
-                <li class="nav-item active"><a class="nav-link" href="#"><?php echo lang('five')?></a></li>
-                <li class="nav-item active"><a class="nav-link" href="#"><?php echo lang('six')?></a></li>
+                <li class="nav-item active"><a class="nav-link" href="comments.php"><?php echo lang('com')?></a></li>
+               
 
 
 
@@ -28,6 +28,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="members.php?action=edit&userid=<?php echo $_SESSION['ID']?>">Edit profile</a>
+                        <a class="dropdown-item" href="../../../ecommerce/index.php">Visit Shop</a>
                         <a class="dropdown-item" href="#">Settings</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="logout.php">Logout</a>
@@ -40,3 +41,4 @@
         </div>
     </div>
 </nav>
+</body>
